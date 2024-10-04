@@ -1,0 +1,54 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "server",
+            "type": "shell",
+            "command": "gcc",
+            "args": [
+                "-O3",          // 最適化レベル
+                "-mavx",        // CPUの拡張命令
+                "-fopenmp",     // OpenMPによる並列化の指定
+                "-static-libgcc",
+                "src/main.c",
+                "src/Mode.c",
+                "src/modules/Adjacent.c",
+                "src/modules/ZobristHash.c",
+                "src/modules/Board.c",
+                "src/modules/Thread.c",
+                "src/modules/HashNode.c",
+                "src/modules/ComboData.c",
+                "src/modules/SearchNode.c",
+                "src/modules/ExcellentNodes.c",
+                "src/modules/LeaderSkill.c",
+                "src/modules/search_conditions/LeaderSettings.c",
+                "src/modules/search_conditions/BoardSettings.c",
+                "src/modules/search_conditions/SearchSettings.c",
+                "src/modules/search_conditions/ClearingSettings.c",
+                "src/modules/search_conditions/SpecialSettings.c",
+                "src/modules/search_conditions/SearchConditions.c",
+                "src/modules/algorithm/BeamSearch.c",
+                "src/modules/algorithm/CountCombo.c",
+                "src/modules/algorithm/count_combo_functions_5x6.c",
+                "src/modules/algorithm/count_combo_functions_6x7.c",
+                "src/modules/algorithm/check_how_clear.c",
+                "src/modules/algorithm/evaluation_functions.c",
+                "src/modules/io/Parser.c",
+                "src/modules/io/output.c",
+                "src/modules/io/WinSock.c",
+                "SFMT/SFMT.c",          // メルセンヌツイスタ用
+                "-msse2",               // 同様
+                "-DSFMT_MEXP=19937",    // 同様
+                "-lws2_32",             // WinSock用
+                "-o",
+                "dist/server"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}
