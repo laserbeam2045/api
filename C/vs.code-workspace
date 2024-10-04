@@ -1,0 +1,29 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"search_algorithm.h": "c",
+			"search.h": "c",
+			"time.h": "c",
+			"math.h": "c",
+			"searchnode.h": "c",
+			"searchconditions.h": "c",
+			"boardsettings.h": "c",
+			"excellentnodes.h": "c",
+			"leaderskill.h": "c",
+			"searchsettings.h": "c",
+			"leadersettings.h": "c",
+			"sfmt.h": "c",
+			"constants.h": "c",
+			"combodata.h": "c",
+			"mode.h": "c",
+			"parser.h": "c",
+			"clearingsettings.h": "c"
+		},
+		"files.autoGuessEncoding": true
+	}
+}
