@@ -348,7 +348,7 @@ static void BeamSearch_selectBestNode(BeamSearch* this, SearchConditions *search
     double evaluation1 = ComboData_getEvaluation(comboData);
     double evaluation2 = ComboData_getEvaluationProbability(comboData);
 
-    printf("\n%3d %8.0lf\n%12.0lf\n", i + 1, evaluation1, evaluation2);
+    // printf("\n%3d %8.0lf\n%12.0lf\n", i + 1, evaluation1, evaluation2);
   }
 }
 
