@@ -60,7 +60,7 @@ bool BoardSettings_isNoEntryPosition(BoardSettings* this, const char position)
     if (position == this->noEntryPositions[i]) {
       return true;
     }
-    printf("%c", this->noEntryPositions[i]);
+    // printf("%c", this->noEntryPositions[i]);
   }
   return false;
 }
