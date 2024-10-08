@@ -21,6 +21,7 @@ static double LeaderSkill_getMagnificationAmakozumi(ComboData *comboData);
 static double LeaderSkill_getMagnificationWrath(ComboData *comboData);
 static double LeaderSkill_getMagnificationKyloRen(ComboData *comboData);
 static double LeaderSkill_getMagnificationAllatu(ComboData *comboData);
+static double LeaderSkill_getMagnificationSukuna(ComboData *comboData);
 
 
 // リーダースキルで加算されるコンボ数を取得する関数
@@ -66,6 +67,11 @@ char LeaderSkill_getAdditionalCombo(char leader, ComboData *comboData)
       return 3;
     }
     break;
+  case (LEADER)SUKUNA:
+    if (ComboData_getComboOf(comboData, (DROP_TYPE)NONE, (DROP_TYPE)FIRE)) {
+      return 4;
+    }
+    break;
   }
   return 0;
 }
@@ -91,6 +97,7 @@ double LeaderSkill_getMagnification(char leader, ComboData *comboData)
     case (LEADER)WRATH    : magnification = LeaderSkill_getMagnificationWrath(comboData); break;
     case (LEADER)KYLO_REN : magnification = LeaderSkill_getMagnificationKyloRen(comboData); break;
     case (LEADER)ALLATU   : magnification = LeaderSkill_getMagnificationAllatu(comboData); break;
+    case (LEADER)SUKUNA   : magnification = LeaderSkill_getMagnificationSukuna(comboData); break;
   }
   return magnification;
 }
@@ -369,6 +376,24 @@ static double LeaderSkill_getMagnificationAllatu(ComboData *comboData)
   crossCount += ComboData_getClearStyle(comboData, (CS_TYPE)CROSS, (DROP_TYPE)DARK);
 
   magnification *= pow(3, crossCount);
+
+  return magnification;
+}
+
+// リーダー「両面宿儺」の倍率を取得する関数
+// 闇を5個以上つなげて消すとダメージを81%軽減、攻撃力が50倍、
+// 固定1000万ダメージ。火ドロップを消すと、4コンボ加算。
+static double LeaderSkill_getMagnificationSukuna(ComboData *comboData)
+{
+  double magnification = 1;
+
+  for (char i = 0; i <= COUNT_COMBO_MAX; i++) {
+    char clearedNum = ComboData_getComboOf(comboData, (DROP_TYPE)DARK, i);
+    if (5 <= clearedNum) {
+      magnification *= 50;
+      break;
+    }
+  }
 
   return magnification;
 }

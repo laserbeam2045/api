@@ -35,7 +35,7 @@ void BeamSearch_init(BeamSearch* this, SearchConditions *searchConditions)
   this->beamDepth = SearchSettings_getBeamDepth(ssp);
   this->maxThreads = omp_get_max_threads();
 
-  int queueLength = this->beamWidth * 5;  // １つのキューが保持できるノード数
+  int queueLength = this->beamWidth * this->maxThreads;  // １つのキューが保持できるノード数
   this->rootHashNode = malloc(sizeof(HashNode));
   this->threads = malloc(sizeof(Thread) * this->maxThreads);
   this->parents = malloc(sizeof(SearchNode) * queueLength);

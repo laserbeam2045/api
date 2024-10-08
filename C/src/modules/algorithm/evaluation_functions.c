@@ -18,6 +18,7 @@ static double evaluateAmakozumi(ComboData *comboData);
 static double evaluateWrath(ComboData *comboData);
 static double evaluateKyloRen(ComboData *comboData);
 static double evaluateAllatu(ComboData *comboData);
+static double evaluateSukuna(ComboData *comboData);
 
 // 共通の評価関数
 double evaluate(ComboData *cdp, SearchConditions *scp, int movedCount)
@@ -172,6 +173,7 @@ static double getEvaluationBy(const char leader, ComboData *cdp,
     case (LEADER)WRATH    : return evaluateWrath(cdp);
     case (LEADER)KYLO_REN : return evaluateKyloRen(cdp);
     case (LEADER)ALLATU   : return evaluateAllatu(cdp);
+    case (LEADER)SUKUNA   : return evaluateSukuna(cdp);
   }
 }
 
@@ -431,6 +433,22 @@ static double evaluateKyloRen(ComboData *comboData)
   int penalty = ComboData_getStep(comboData);
 
   double evaluationValue = (magnification) + (comboNum);
+
+  return evaluationValue;
+}
+
+
+// 評価関数（両面宿儺）
+// 闇を5個以上つなげて消すとダメージを81%軽減、攻撃力が50倍、
+// 固定1000万ダメージ。火ドロップを消すと、4コンボ加算。
+static double evaluateSukuna(ComboData *comboData)
+{
+  double magnification = ComboData_getMagnification(comboData);
+  char comboNum = ComboData_getCombo(comboData);
+  char step = ComboData_getStep(comboData);
+  double evaluationValue;
+
+  evaluationValue = (magnification * 4) + (comboNum << 1) - step;
 
   return evaluationValue;
 }

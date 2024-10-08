@@ -19,7 +19,7 @@ void BoardSettings_init(BoardSettings* this, char request[])
   this->droppable = Parser_getInt(request, "fallDrops");
   this->startPosition = Parser_getInt(request, "startPosition");
   this->noEntryPositionsCount = Parser_getIntArray(request, "noEntryPositions", this->noEntryPositions);
-  printf("%d", this->noEntryPositionsCount);
+  // printf("%d", this->noEntryPositionsCount);
 }
 
 // board属性の先頭ポインタを返す関数

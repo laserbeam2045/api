@@ -44,6 +44,7 @@ typedef enum {
   WRATH,
   KYLO_REN,
   ALLATU,
+  SUKUNA,
 } LEADER;
 
 #endif  // _CONSTANTS_H_
